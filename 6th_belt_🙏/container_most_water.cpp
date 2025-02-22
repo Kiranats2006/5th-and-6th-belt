@@ -9,8 +9,8 @@ int maxArea(vector<int>& height){
     int maxWater=0;
     while(left<right){
         int width=right-left;
-        int minHeight=(height[left]<height[right])?height[left]:height[right];
-        int area=width*minHeight;
+        int minheight=(height[left]<height[right])?height[left]:height[right];
+        int area=width*minheight;
         if(area>maxWater){
             maxWater=area;
         }
@@ -30,6 +30,5 @@ int main(){
     for(int i=0; i<n; i++){
         cin>>height[i];
     }
-    int result=maxArea(height);
-    cout<<result;
+    cout<<maxArea(height);
 }
