@@ -2,16 +2,19 @@
 #include<algorithm>
 #include<vector>
 using namespace std;
-int totalFruits(vector<int>& fruits){
+
+
+int totalFruit(vector<int>& fruits) {
     int n=fruits.size();
-    if(n<=2){
-        return 0;
-    }
+    if(n<=2) return n;
     int maxFruits=0, left=0, fruit1=-1, fruit2=-1, count1=0, count2=0;
-    for(int right=0; right<n; right++){
-        int currentFruit=fruits[right];
-        if(currentFruit==fruit1) count1++;
-        else if(currentFruit==fruit2) count2++;
+    for(int i=0; i<n; i++){
+        int currentFruit=fruits[i];
+        if(currentFruit==fruit1){
+            count1++;
+        } else if(currentFruit==fruit2){
+            count2++;
+        }
         else{
             while(count1>0 && count2>0){
                 int leftFruit=fruits[left];
@@ -23,16 +26,17 @@ int totalFruits(vector<int>& fruits){
                 }
                 left++;
             }
+            if(count1==0){
+                fruit1=currentFruit;
+                count1=1;
+            }
+            else{
+
+                fruit2=currentFruit;
+                count2=1;
+            }
         }
-        if(count1==0){
-            fruit1=currentFruit;
-            count1=1;
-        }
-        else{
-            fruit2=currentFruit;
-            count2=1;
-        }
-        maxFruits=max(maxFruits, right-left+1);
+        maxFruits=(maxFruits>i-left+1)?maxFruits:i-left+1;
     }
     return maxFruits;
 }
@@ -43,5 +47,5 @@ int main(){
     for(int i=0; i<n; i++){
         cin>>fruits[i];
     }
-    cout<<totalFruits(fruits);
+    cout<<totalFruit(fruits);
 }

@@ -3,17 +3,18 @@
 #include<algorithm>
 # include<vector>
 using namespace std;
+
 int trap(vector<int>& height){
     int n=height.size();
     if(n==0) return 0;
-    int left=0, right=n-1, leftMax=0, rightMax=0, trappedWater=0;
+    int left=0, right=n-1, leftmax=0, rightMax=0, trapped=0;
     while(left<=right){
-        if(height[left]<=height[right]){
-            if(height[left]>=leftMax){
-                leftMax=height[left];
+        if(height[left]<height[right]){
+            if(height[left]>=leftmax){
+                leftmax=height[left];
             }
             else{
-                trappedWater+=leftMax-height[left];
+                trapped+=leftmax-height[left];
             }
             left++;
         }
@@ -22,12 +23,12 @@ int trap(vector<int>& height){
                 rightMax=height[right];
             }
             else{
-                trappedWater+=rightMax-height[right];
+                trapped+=rightMax-height[right];
             }
             right--;
         }
     }
-    return trappedWater;
+    return trapped;
 }
 int main(){
     int n;
@@ -36,7 +37,6 @@ int main(){
     for(int i=0; i<n; i++){
         cin>>height[i];
     }
-    int result=trap(height);
-    cout<<result;
+    cout<<trap(height);
     return 0;
 }

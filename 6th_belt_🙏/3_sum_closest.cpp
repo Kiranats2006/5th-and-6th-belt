@@ -6,7 +6,7 @@ int absValue(int x){
     if(x<0) return -x;
     return x;
 }
-int bubbleSort(vector<int>& nums){
+void bubbleSort(vector<int>& nums){
     int n=nums.size();
     for(int i=0; i<n-1; i++){
         for(int j=0; j<n-i-1; j++){

@@ -12,7 +12,6 @@ int boundedMax(vector<int>& A, int L, int R) {
         if (A[i] >= L) {
             right = i;
         }
-
         result += right - left;
     }
 
